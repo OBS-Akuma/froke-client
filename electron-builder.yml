@@ -1,0 +1,31 @@
+appId: store.smudgy.client
+productName: froke Client
+directories:
+  output: "build"
+npmRebuild: false
+win:
+  target:
+    - target: nsis
+      arch:
+        - x64
+        - ia32
+  icon: "src/assets/img/icon.png"
+  artifactName: "${name}-setup-win-${arch}-${version}.${ext}"
+mac:
+  target: dmg
+  arch:
+    - x64
+  icon: "src/assets/img/icon.icns"
+  artifactName: "${name}-setup-mac-${version}.${ext}"
+linux:
+  target:
+    - AppImage
+    - tar.gz
+  category: Game
+  icon: "src/assets/img/icon.png"
+  artifactName: "${name}-${version}-linux-${arch}.${ext}"
+publish:
+  - provider: github
+    owner: smudgy.store
+    repo: froke-client
+    releaseType: draft 
