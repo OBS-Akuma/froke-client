@@ -38,7 +38,7 @@ class DiscordRPC {
       instance: false,
       buttons: [
         { label: "Download", url: "https://client.smudgy.store" },
-        { label: "Froke Discord", url: https://discord.gg/ak9JjymMV5" },
+        { label: "Froke Discord", url: "https://discord.gg/ak9JjymMV5" },
       ],
     };
   }
