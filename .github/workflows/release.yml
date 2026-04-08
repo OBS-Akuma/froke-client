@@ -12,8 +12,11 @@ jobs:
       matrix:
         include:
           - os: windows-latest
+            node-version: '14'
           - os: macos-13
+            node-version: '14'
           - os: ubuntu-latest
+            node-version: '14'
 
     steps:
       - name: Check out code
@@ -22,19 +25,19 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '16'
+          node-version: ${{ matrix.node-version }}
 
-      - name: Configure Electron Mirrors
+      - name: Configure Electron mirrors
         run: |
           npm config set electron_mirror "https://npmmirror.com/mirrors/electron/"
           echo "ELECTRON_BUILDER_BINARIES_MIRROR=https://npmmirror.com/mirrors/electron/" >> $GITHUB_ENV
+          echo "ELECTRON_MIRROR=https://npmmirror.com/mirrors/electron/" >> $GITHUB_ENV
 
       - name: Install dependencies
-        run: npm ci
+        run: npm install
 
-      - name: Build and Publish
-        uses: samuelmeuli/action-electron-builder@v1
-        with:
-          github_token: ${{ secrets.github_token }}
-          release: ${{ startsWith(github.ref, 'refs/tags/v') }}
-          args: --publish always
+      - name: Build and publish
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          npm run build -- --publish always
