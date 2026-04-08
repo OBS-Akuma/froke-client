@@ -3,7 +3,7 @@ name: Build and Release Electron App
 on:
   push:
     tags:
-      - 'v*'  # This triggers the build when you push a tag like v1.0.0
+      - 'v*'
 
 jobs:
   release:
@@ -19,12 +19,16 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '14'  # Node 14 works with Electron 10
+
+      - name: Configure Electron Mirror
+        run: |
+          npm config set electron_mirror "https://npmmirror.com/mirrors/electron/"
+          npm config set registry "https://registry.npmmirror.com"
 
       - name: Install dependencies
         run: npm ci
 
-      # The action below uses your electron-builder.yml config to build and publish[citation:8][citation:10]
       - name: Build and Publish
         uses: samuelmeuli/action-electron-builder@v1
         with:
