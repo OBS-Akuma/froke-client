@@ -24,10 +24,10 @@ jobs:
         with:
           node-version: '16'
 
-      - name: Configure Electron Mirror
+      - name: Configure Electron Mirrors
         run: |
           npm config set electron_mirror "https://npmmirror.com/mirrors/electron/"
-          npm config set registry "https://registry.npmmirror.com"
+          echo "ELECTRON_BUILDER_BINARIES_MIRROR=https://npmmirror.com/mirrors/electron/" >> $GITHUB_ENV
 
       - name: Install dependencies
         run: npm ci
