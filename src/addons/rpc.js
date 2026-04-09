@@ -33,7 +33,7 @@ class DiscordRPC {
     return {
       startTimestamp: this.startTimestamp,
       state: "In the lobby",
-      largeImageKey: "juice",
+      largeImageKey: "froke",
       largeImageText: `Froke Client v${version}`,
       instance: false,
       buttons: [
