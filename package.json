@@ -5,7 +5,7 @@
   "main": "src/main.js",
   "scripts": {
     "start": "electron .",
-    "build": "electron-builder"
+    "build": "npx electron-builder"
   },
   "repository": {
     "type": "git",
@@ -15,7 +15,7 @@
   "author": "smudgy.store",
   "license": "ISC",
   "devDependencies": {
-    "electron": "^10.4.7",
+    "electron": "10.4.7",
     "electron-builder": "^23.0.2"
   },
   "dependencies": {
